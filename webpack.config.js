@@ -4,6 +4,18 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
+  // mode: 'devleopment',
+
+  devServer: {
+
+    port: '10010',
+    // static: ['./public'],
+    // open: true,
+    // hot: true,
+    // liveReload: true,
+
+  },
+
   entry: './src/index.js',
 
   output: {
@@ -17,10 +29,16 @@ module.exports = {
     })
   ],
 
+  resolve: {
+    //allows to import modules without extensions
+    extensions: ['.js','.jsx', '.json'] // should be equal to module.rules[0].test
+  },
+
   module: {
     rules: [
       {
-        test: /.js$/,
+        // process files by regex
+        test: /.(js|jsx|json)$/,  // should be equal to Resolve extensions
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -34,5 +52,4 @@ module.exports = {
       }
     ]
   }
-
 }
